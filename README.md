@@ -2,9 +2,9 @@
 Java ALA project voor school
 
 Crew:
-Ben
-Shivam
-Jory
-Adeel
-Bryan
-Kevin
+* Ben
+* Shivam
+* Jory
+* Adeel
+* Bryan
+* Kevin
