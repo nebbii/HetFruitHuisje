@@ -6,7 +6,7 @@ Thumbs.db
 
 # IDE personal files
 lib/
-nbproject/
+nbproject/private
 
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
