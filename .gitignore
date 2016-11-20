@@ -5,7 +5,6 @@ Thumbs.db
 *.class
 
 # IDE personal files
-lib/
 nbproject/private
 
 # Mobile Tools for Java (J2ME)
@@ -20,3 +19,4 @@ nbproject/private
 hs_err_pid*
 /JavaApplication13/nbproject/private/
 
+/build/
