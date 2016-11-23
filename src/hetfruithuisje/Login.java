@@ -46,13 +46,13 @@ public class Login extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Username:");
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(140, 170, 100, 22);
+        jLabel1.setBounds(140, 170, 100, 24);
 
         jLabel2.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Password:");
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(140, 230, 100, 22);
+        jLabel2.setBounds(140, 230, 100, 24);
 
         usernamefield.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         usernamefield.addActionListener(new java.awt.event.ActionListener() {
@@ -109,7 +109,7 @@ public class Login extends javax.swing.JFrame {
             j.setVisible(true);
             this.dispose();
         } else {
-            JOptionPane.showMessageDialog(null, "Login faild");
+            JOptionPane.showMessageDialog(null, "Login failed");
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 

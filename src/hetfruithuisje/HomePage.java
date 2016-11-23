@@ -59,14 +59,14 @@ public class HomePage extends javax.swing.JFrame {
             .addGroup(jPanelCustomersLayout.createSequentialGroup()
                 .addGap(120, 120, 120)
                 .addComponent(jCustomersTitle)
-                .addContainerGap(72, Short.MAX_VALUE))
+                .addContainerGap(103, Short.MAX_VALUE))
         );
         jPanelCustomersLayout.setVerticalGroup(
             jPanelCustomersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelCustomersLayout.createSequentialGroup()
                 .addGap(46, 46, 46)
                 .addComponent(jCustomersTitle)
-                .addContainerGap(381, Short.MAX_VALUE))
+                .addContainerGap(377, Short.MAX_VALUE))
         );
 
         mainPanel.add(jPanelCustomers, "jPanelCustomers");
@@ -82,14 +82,14 @@ public class HomePage extends javax.swing.JFrame {
             .addGroup(jPanelProductsLayout.createSequentialGroup()
                 .addGap(71, 71, 71)
                 .addComponent(jProductsTitle)
-                .addContainerGap(77, Short.MAX_VALUE))
+                .addContainerGap(109, Short.MAX_VALUE))
         );
         jPanelProductsLayout.setVerticalGroup(
             jPanelProductsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelProductsLayout.createSequentialGroup()
                 .addGap(30, 30, 30)
                 .addComponent(jProductsTitle)
-                .addContainerGap(397, Short.MAX_VALUE))
+                .addContainerGap(393, Short.MAX_VALUE))
         );
 
         mainPanel.add(jPanelProducts, "jPanelProducts");
@@ -105,14 +105,14 @@ public class HomePage extends javax.swing.JFrame {
             .addGroup(jPanelOrdersLayout.createSequentialGroup()
                 .addGap(61, 61, 61)
                 .addComponent(jOrdersTitle)
-                .addContainerGap(54, Short.MAX_VALUE))
+                .addContainerGap(90, Short.MAX_VALUE))
         );
         jPanelOrdersLayout.setVerticalGroup(
             jPanelOrdersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelOrdersLayout.createSequentialGroup()
                 .addGap(32, 32, 32)
                 .addComponent(jOrdersTitle)
-                .addContainerGap(395, Short.MAX_VALUE))
+                .addContainerGap(391, Short.MAX_VALUE))
         );
 
         mainPanel.add(jPanelOrders, "jPanelOrders");
