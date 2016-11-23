@@ -5,6 +5,7 @@
  */
 package hetfruithuisje;
 
+import java.awt.*;
 import javax.swing.*;
 
 /**
@@ -18,6 +19,9 @@ public class Login extends javax.swing.JFrame {
      */
     public Login() {
         initComponents();
+        Toolkit toolkit = getToolkit();
+        Dimension size = toolkit.getScreenSize();
+        setLocation(size.width/2 - getWidth()/2, size.height/2 - getHeight()/2);
     }
 
     /**
@@ -31,28 +35,38 @@ public class Login extends javax.swing.JFrame {
 
         jLabelUsername = new javax.swing.JLabel();
         jLabelPassword = new javax.swing.JLabel();
+        jLabelFunctie = new javax.swing.JLabel();
         usernamefield = new javax.swing.JTextField();
         passwordfield = new javax.swing.JPasswordField();
+        jComboBox1 = new javax.swing.JComboBox<>();
         jLoginBtn = new javax.swing.JButton();
         Logo = new javax.swing.JLabel();
         Background = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMinimumSize(new java.awt.Dimension(700, 450));
-        setSize(new java.awt.Dimension(700, 500));
+        setMaximumSize(new java.awt.Dimension(800, 620));
+        setMinimumSize(new java.awt.Dimension(800, 620));
+        setPreferredSize(new java.awt.Dimension(800, 620));
+        setSize(new java.awt.Dimension(800, 620));
         getContentPane().setLayout(null);
 
         jLabelUsername.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         jLabelUsername.setForeground(new java.awt.Color(255, 255, 255));
-        jLabelUsername.setText("Username:");
+        jLabelUsername.setText("Gebruikersnaam:");
         getContentPane().add(jLabelUsername);
-        jLabelUsername.setBounds(140, 170, 100, 22);
+        jLabelUsername.setBounds(30, 370, 160, 22);
 
         jLabelPassword.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         jLabelPassword.setForeground(new java.awt.Color(255, 255, 255));
-        jLabelPassword.setText("Password:");
+        jLabelPassword.setText("Wachtwoord:");
         getContentPane().add(jLabelPassword);
-        jLabelPassword.setBounds(140, 230, 100, 22);
+        jLabelPassword.setBounds(70, 440, 120, 20);
+
+        jLabelFunctie.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
+        jLabelFunctie.setForeground(new java.awt.Color(255, 255, 255));
+        jLabelFunctie.setText(" Selecteer functie:");
+        getContentPane().add(jLabelFunctie);
+        jLabelFunctie.setBounds(20, 500, 180, 22);
 
         usernamefield.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         usernamefield.addActionListener(new java.awt.event.ActionListener() {
@@ -61,7 +75,7 @@ public class Login extends javax.swing.JFrame {
             }
         });
         getContentPane().add(usernamefield);
-        usernamefield.setBounds(250, 150, 240, 60);
+        usernamefield.setBounds(200, 350, 240, 60);
 
         passwordfield.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -69,7 +83,16 @@ public class Login extends javax.swing.JFrame {
             }
         });
         getContentPane().add(passwordfield);
-        passwordfield.setBounds(250, 210, 240, 60);
+        passwordfield.setBounds(200, 430, 240, 50);
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Admin", "Medewerker" }));
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jComboBox1);
+        jComboBox1.setBounds(200, 490, 240, 40);
 
         jLoginBtn.setText("Inloggen");
         jLoginBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -78,15 +101,15 @@ public class Login extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jLoginBtn);
-        jLoginBtn.setBounds(270, 270, 190, 50);
+        jLoginBtn.setBounds(300, 530, 140, 50);
 
         Logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hetfruithuisje/images/logo.png"))); // NOI18N
         getContentPane().add(Logo);
-        Logo.setBounds(250, 30, 242, 74);
+        Logo.setBounds(30, 20, 740, 250);
 
         Background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hetfruithuisje/images/bg.png"))); // NOI18N
         getContentPane().add(Background);
-        Background.setBounds(0, 0, 700, 450);
+        Background.setBounds(0, 0, 800, 600);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -112,6 +135,10 @@ public class Login extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Login failed");
         }
     }//GEN-LAST:event_jLoginBtnActionPerformed
+
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -151,6 +178,8 @@ public class Login extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Background;
     private javax.swing.JLabel Logo;
+    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JLabel jLabelFunctie;
     private javax.swing.JLabel jLabelPassword;
     private javax.swing.JLabel jLabelUsername;
     private javax.swing.JButton jLoginBtn;
