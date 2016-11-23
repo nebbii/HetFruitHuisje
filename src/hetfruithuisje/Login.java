@@ -5,7 +5,7 @@
  */
 package hetfruithuisje;
 
-import javax.swing.JOptionPane;
+import javax.swing.*;
 
 /**
  *
@@ -29,11 +29,11 @@ public class Login extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        jLabelUsername = new javax.swing.JLabel();
+        jLabelPassword = new javax.swing.JLabel();
         usernamefield = new javax.swing.JTextField();
         passwordfield = new javax.swing.JPasswordField();
-        jButton1 = new javax.swing.JButton();
+        jLoginBtn = new javax.swing.JButton();
         Logo = new javax.swing.JLabel();
         Background = new javax.swing.JLabel();
 
@@ -42,17 +42,17 @@ public class Login extends javax.swing.JFrame {
         setSize(new java.awt.Dimension(700, 500));
         getContentPane().setLayout(null);
 
-        jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Username:");
-        getContentPane().add(jLabel1);
-        jLabel1.setBounds(140, 170, 100, 24);
+        jLabelUsername.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
+        jLabelUsername.setForeground(new java.awt.Color(255, 255, 255));
+        jLabelUsername.setText("Username:");
+        getContentPane().add(jLabelUsername);
+        jLabelUsername.setBounds(140, 170, 100, 22);
 
-        jLabel2.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("Password:");
-        getContentPane().add(jLabel2);
-        jLabel2.setBounds(140, 230, 100, 24);
+        jLabelPassword.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
+        jLabelPassword.setForeground(new java.awt.Color(255, 255, 255));
+        jLabelPassword.setText("Password:");
+        getContentPane().add(jLabelPassword);
+        jLabelPassword.setBounds(140, 230, 100, 22);
 
         usernamefield.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         usernamefield.addActionListener(new java.awt.event.ActionListener() {
@@ -71,14 +71,14 @@ public class Login extends javax.swing.JFrame {
         getContentPane().add(passwordfield);
         passwordfield.setBounds(250, 210, 240, 60);
 
-        jButton1.setText("Inloggen");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jLoginBtn.setText("Inloggen");
+        jLoginBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jLoginBtnActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1);
-        jButton1.setBounds(270, 270, 190, 50);
+        getContentPane().add(jLoginBtn);
+        jLoginBtn.setBounds(270, 270, 190, 50);
 
         Logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hetfruithuisje/images/logo.png"))); // NOI18N
         getContentPane().add(Logo);
@@ -99,7 +99,7 @@ public class Login extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_passwordfieldActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jLoginBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jLoginBtnActionPerformed
         
         String ext = new String(passwordfield.getPassword());
         
@@ -111,7 +111,7 @@ public class Login extends javax.swing.JFrame {
         } else {
             JOptionPane.showMessageDialog(null, "Login failed");
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_jLoginBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -151,9 +151,9 @@ public class Login extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Background;
     private javax.swing.JLabel Logo;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabelPassword;
+    private javax.swing.JLabel jLabelUsername;
+    private javax.swing.JButton jLoginBtn;
     private javax.swing.JPasswordField passwordfield;
     private javax.swing.JTextField usernamefield;
     // End of variables declaration//GEN-END:variables
