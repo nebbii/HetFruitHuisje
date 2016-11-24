@@ -16,8 +16,8 @@ import javax.swing.*;
  */
 public class db {
     private static final String USERNAME="root";
-    private static final String PASSWORD="root";
-    private static final String CON_STRING="jdbc:mysql://localhost:8889/hetfruithuisje";
+    private static final String PASSWORD="";
+    private static final String CON_STRING="jdbc:mysql://localhost:3306/hetfruithuisje";
     
     Connection conn = null;
     public static Connection java_db(){
