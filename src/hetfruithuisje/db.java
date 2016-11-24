@@ -6,8 +6,7 @@
 
 package hetfruithuisje;
 
-import com.mysql.jdbc.Connection;
-import java.sql.DriverManager;
+import java.sql.*;
 import javax.swing.*;
 
 /**
@@ -24,6 +23,7 @@ public class db {
         
         
         try {
+            Class.forName("com.mysql.jdbc.Driver");
             Connection conn = (Connection) DriverManager.getConnection(CON_STRING, USERNAME, PASSWORD);
             System.out.println("Conntected");
             return conn;
