@@ -24,6 +24,55 @@ class Body
 		";
 	}
 	
+	function bestelling_aanmaken($db){
+		$sql = "SELECT
+				  `productnr`,
+				  `product_soort`,
+				  `product_naam`,
+				  `prijs`,
+				  `hoeveelheid`,
+				  `eenheid`
+				FROM
+				  `product`";
+		$result = $db->query($sql);
+		while($row = $result->fetch_assoc()) {
+			$store_product[$row['productnr']] = $row;
+		}
+		
+		echo "<h4>Bestelling Aanmaken</h4>";
+		echo "<form action='{$_SERVER['PHP_SELF']}?q=bestelling_aanmaken' method='POST'><table>";
+		echo "<tr>";
+		echo "<td>Product: </td>";
+		echo "<td><select name='product'>";
+		foreach($store_product as $row) {
+			echo "<option value={$row['productnr']}>#{$row['productnr']} - {$row['product_naam']} &euro;{$row['prijs']} per {$row['eenheid']}</option>";
+		}
+		echo "</select></td>";
+		echo "</tr>";
+		echo "<tr><td><input type='submit'></td></tr>";
+		echo "</table></form>";
+	}
+	
+	function bestelling_aanmaken_process($db){
+		$sql = "INSERT INTO `klant_order`(
+					`klantnr`,
+					`btw_percentage`
+				) VALUES (
+				  {$_SESSION['user']['klantnr']},
+				  21
+				)";
+		$db->query($sql);
+		$orderid = $db->insert_id;
+		
+		$sql = "INSERT INTO
+				  `klant_order_item`(
+					`ordernr`,
+					`aantal`)
+				VALUES({$orderid}, {$_POST['product']})";
+		$db->query($sql);
+		echo "<h4>Order Aangemaakt!</h4>";
+	}
+	
 	// global function to process any table!
 	function form_process($db,$action,$table,$pk){
 		// build sql
