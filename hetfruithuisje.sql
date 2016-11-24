@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 24, 2016 at 09:40 AM
+-- Generation Time: Nov 24, 2016 at 12:01 PM
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 5.6.21
 
@@ -28,6 +28,8 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `klant` (
   `klantnr` int(11) NOT NULL,
+  `email` varchar(33) DEFAULT NULL,
+  `pass` varchar(33) DEFAULT NULL,
   `naam` varchar(33) NOT NULL,
   `woonplaats` varchar(33) NOT NULL,
   `straat` varchar(33) NOT NULL,
