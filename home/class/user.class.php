@@ -3,23 +3,20 @@
 class User 
 {	
 	function login($user,$db) {
-		$pass = md5($user['password']);
 		$sql = "SELECT
-				  `cursistid`,
-				  `cursistww`,
-				  `admin`,
-				  `emailadres`,
-				  `roepnaam`,
-				  `tussenvoegsels`,
-				  `achternaam`,
-				  `adres`,
+				  `klantnr`,
+				  `email`,
+				  `pass`,
+				  `naam`,
 				  `woonplaats`,
-				  `telefoon`
+				  `straat`,
+				  `huisnummer`,
+				  `postcode`
 				FROM
-				  `cursist`
+				  `klant`
 				WHERE
-				 `emailadres`='{$user['email']}' AND
-				 `cursistww`='{$pass}'
+				 `email`='{$user['email']}' AND
+				 `pass`='{$user['password']}'
 				 ";
 		$result = $db->query($sql);
 		if ($result->num_rows > 0) {
@@ -37,33 +34,5 @@ class User
 	function logout() {
 		session_destroy();
 		header("Location: {$_SERVER['PHP_SELF']}?q=home");
-	}
-	
-	function register($user,$db) {
-		$pass = md5($user['password']);
-		$user['pass'] = $pass; 
-		$sql = "INSERT INTO
-				  `cursist`(
-					`emailadres`,
-					`cursistww`,
-					`roepnaam`,
-					`tussenvoegsels`,
-					`achternaam`,
-					`adres`,
-					`woonplaats`,
-					`telefoon`
-				  )
-				VALUES(
-				  '{$user['emailadres']}',
-				  '{$user['pass']}',
-				  '{$user['roepnaam']}',
-				  '{$user['tussenvoegsels']}',
-				  '{$user['achternaam']}',
-				  '{$user['adres']}',
-				  '{$user['woonplaats']}',
-				  '{$user['telefoon']}'
-				)";
-		$db->query($sql);
-		$_SESSION['m'] = "Uw account is aangemaakt, u kan nu gaan inloggen.";
 	}
 }

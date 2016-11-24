@@ -17,6 +17,23 @@
 	
 	// initialize paginator
 	$body = new Body;
+	
+	// process user 
+	if(isset($_GET['user'])) {
+		$process = new User();
+		switch($_GET['user']) {
+			case 'register':
+				$process->register($_POST['user'],$db);
+				break;
+			case 'logout':
+				$process->logout();
+				break;
+			case 'login':
+			default:
+				$process->login($_POST['user'],$db);
+				break;
+		}
+	}
 	?>
 	
 </head>
@@ -45,6 +62,8 @@
 				<?php if(!isset($_SESSION['user'])): // user ?>
 					<li><a href="<?php echo $_SERVER['PHP_SELF']; ?>?q=login">Inloggen</a></li>
 				<?php else: ?>
+					<li><a href="<?php echo $_SERVER['PHP_SELF']; ?>?q=bestelling_aanmaken">Bestelling Aanmaken</a></li>
+					<li><a href="<?php echo $_SERVER['PHP_SELF']; ?>?q=bestelling_bekijken">Bestellingen Bekijken</a></li>
 					<li><a href="<?php echo $_SERVER['PHP_SELF']; ?>?user=logout">Log uit</a></li>
 				<?php endif; ?>
 			</ul>
@@ -66,6 +85,12 @@
 						break;
 					case 'login':
 						$body->loginpage();
+						break;
+					case 'bestelling_aanmaken':
+						if(isset($_POST)) {
+							$body->bestelling_aanmaken_process($db);
+						}
+						$body->bestelling_aanmaken($db);
 						break;
 					default:
 						$body->home();
