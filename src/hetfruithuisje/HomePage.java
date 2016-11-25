@@ -276,6 +276,7 @@ public class HomePage extends javax.swing.JFrame {
         
         AddCustomer j = new AddCustomer();
         j.setVisible(true);
+        this.dispose();
         
     }//GEN-LAST:event_jBtnAddCustomerActionPerformed
 

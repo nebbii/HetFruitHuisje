@@ -26,7 +26,7 @@ public class AddCustomer extends javax.swing.JFrame {
         initComponents();
         txt_Cnr.setEnabled(false);
         conn = db.java_db();
-
+        
         Toolkit toolkit = getToolkit();
         Dimension size = toolkit.getScreenSize();
         setLocation(size.width/2 - getWidth()/2, size.height/2 - getHeight()/2);
@@ -73,19 +73,16 @@ public class AddCustomer extends javax.swing.JFrame {
 
         jLCnr.setForeground(new java.awt.Color(255, 255, 255));
         jLCnr.setText("Klantnr:");
-        jLCnr.setLocation(new java.awt.Point(140, 150));
         getContentPane().add(jLCnr);
         jLCnr.setBounds(150, 150, 49, 16);
 
         jLCname.setForeground(new java.awt.Color(255, 255, 255));
         jLCname.setText("Naam:");
-        jLCname.setLocation(new java.awt.Point(150, 300));
         getContentPane().add(jLCname);
         jLCname.setBounds(160, 300, 40, 16);
 
         jLCstreet.setForeground(new java.awt.Color(255, 255, 255));
         jLCstreet.setText("Straat:");
-        jLCstreet.setLocation(new java.awt.Point(153, 350));
         getContentPane().add(jLCstreet);
         jLCstreet.setBounds(160, 350, 40, 16);
 
@@ -96,7 +93,6 @@ public class AddCustomer extends javax.swing.JFrame {
 
         jLKzip.setForeground(new java.awt.Color(255, 255, 255));
         jLKzip.setText("Postcode:");
-        jLKzip.setLocation(new java.awt.Point(135, 450));
         getContentPane().add(jLKzip);
         jLKzip.setBounds(130, 450, 61, 16);
 
@@ -135,7 +131,6 @@ public class AddCustomer extends javax.swing.JFrame {
 
         jLSearch.setForeground(new java.awt.Color(255, 255, 255));
         jLSearch.setText("Klant zoeken:");
-        jLSearch.setLocation(new java.awt.Point(105, 100));
         getContentPane().add(jLSearch);
         jLSearch.setBounds(110, 100, 85, 16);
 
@@ -179,7 +174,6 @@ public class AddCustomer extends javax.swing.JFrame {
 
         jLCpass.setForeground(new java.awt.Color(255, 255, 255));
         jLCpass.setText("Wachtwoord:");
-        jLCpass.setLocation(new java.awt.Point(110, 250));
         getContentPane().add(jLCpass);
         jLCpass.setBounds(120, 250, 81, 16);
 
@@ -193,7 +187,6 @@ public class AddCustomer extends javax.swing.JFrame {
 
         jLEmail.setForeground(new java.awt.Color(255, 255, 255));
         jLEmail.setText("E-mailadres:");
-        jLEmail.setLocation(new java.awt.Point(110, 200));
         getContentPane().add(jLEmail);
         jLEmail.setBounds(120, 200, 80, 16);
         getContentPane().add(txt_Cemail);
@@ -201,9 +194,9 @@ public class AddCustomer extends javax.swing.JFrame {
 
         jTitlePage.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
         jTitlePage.setForeground(new java.awt.Color(102, 153, 255));
-        jTitlePage.setText("Klant toevoegen");
+        jTitlePage.setText("Klant toevoegen/updaten/verwijderen");
         getContentPane().add(jTitlePage);
-        jTitlePage.setBounds(277, 32, 280, 43);
+        jTitlePage.setBounds(60, 30, 680, 43);
 
         background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hetfruithuisje/images/bg.png"))); // NOI18N
         getContentPane().add(background);
@@ -237,6 +230,7 @@ public class AddCustomer extends javax.swing.JFrame {
                 
                 pst.execute();
                 JOptionPane.showMessageDialog(null, "Klant succesvol opgeslagen");
+                
             }
             
         } catch(Exception e) {
