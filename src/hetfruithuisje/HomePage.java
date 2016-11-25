@@ -5,27 +5,59 @@
  */
 package hetfruithuisje;
 
-import java.awt.CardLayout;
-import java.awt.Dimension;
-import java.awt.Toolkit;
-
+import java.awt.*;
+import java.sql.*;
+import java.util.*;
+import javax.swing.*;
+import net.proteanit.sql.DbUtils;
 /**
  *
  * @author Sammy Guergachi <sguergachi at gmail.com>
  */
 public class HomePage extends javax.swing.JFrame {
-
+    
+    Connection conn = null;
+    ResultSet rs = null;
+    PreparedStatement pst = null;
+    
     /**
      * Creates new form HomePage
      */
     public HomePage() {
         initComponents();
+        conn = db.java_db();
         
         Toolkit toolkit = getToolkit();
         Dimension size = toolkit.getScreenSize();
         setLocation(size.width/2 - getWidth()/2, size.height/2 - getHeight()/2);
+        
+        Update_table();
     }
+    
+    private void Update_table() {
+        try {
+            String sql ="SELECT * FROM klant";
+            pst=conn.prepareStatement(sql);
+            rs=pst.executeQuery();
+            jTableCustomers.setModel(DbUtils.resultSetToTableModel(rs));
+            
+        } catch(Exception e){
+            
+            JOptionPane.showMessageDialog(null, e);
+            
+        }finally {
 
+            try{
+                rs.close();
+                pst.close();
+
+            }
+            catch(Exception e){
+
+            }
+        }
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -38,6 +70,9 @@ public class HomePage extends javax.swing.JFrame {
         mainPanel = new javax.swing.JPanel();
         jPanelCustomers = new javax.swing.JPanel();
         jCustomersTitle = new javax.swing.JLabel();
+        jBtnAddCustomer = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTableCustomers = new javax.swing.JTable();
         jPanelProducts = new javax.swing.JPanel();
         jProductsTitle = new javax.swing.JLabel();
         jPanelOrders = new javax.swing.JPanel();
@@ -46,10 +81,13 @@ public class HomePage extends javax.swing.JFrame {
         jBtnProducts = new javax.swing.JButton();
         jBtnOrders = new javax.swing.JButton();
         jBtnLogout = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
         background = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMinimumSize(new java.awt.Dimension(700, 480));
+        setMaximumSize(new java.awt.Dimension(800, 600));
+        setMinimumSize(new java.awt.Dimension(800, 600));
+        setSize(new java.awt.Dimension(800, 600));
         getContentPane().setLayout(null);
 
         mainPanel.setLayout(new java.awt.CardLayout());
@@ -58,21 +96,50 @@ public class HomePage extends javax.swing.JFrame {
         jCustomersTitle.setForeground(new java.awt.Color(0, 102, 255));
         jCustomersTitle.setText("Klanten Overzicht");
 
+        jBtnAddCustomer.setText("Klant wijzigen");
+        jBtnAddCustomer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnAddCustomerActionPerformed(evt);
+            }
+        });
+
+        jTableCustomers.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(jTableCustomers);
+
         javax.swing.GroupLayout jPanelCustomersLayout = new javax.swing.GroupLayout(jPanelCustomers);
         jPanelCustomers.setLayout(jPanelCustomersLayout);
         jPanelCustomersLayout.setHorizontalGroup(
             jPanelCustomersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelCustomersLayout.createSequentialGroup()
-                .addGap(120, 120, 120)
+                .addContainerGap(462, Short.MAX_VALUE)
+                .addComponent(jBtnAddCustomer)
+                .addContainerGap())
+            .addComponent(jScrollPane1)
+            .addGroup(jPanelCustomersLayout.createSequentialGroup()
+                .addGap(135, 135, 135)
                 .addComponent(jCustomersTitle)
-                .addContainerGap(103, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanelCustomersLayout.setVerticalGroup(
             jPanelCustomersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelCustomersLayout.createSequentialGroup()
-                .addGap(46, 46, 46)
+                .addGap(28, 28, 28)
                 .addComponent(jCustomersTitle)
-                .addContainerGap(377, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 410, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jBtnAddCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30))
         );
 
         mainPanel.add(jPanelCustomers, "jPanelCustomers");
@@ -88,14 +155,14 @@ public class HomePage extends javax.swing.JFrame {
             .addGroup(jPanelProductsLayout.createSequentialGroup()
                 .addGap(71, 71, 71)
                 .addComponent(jProductsTitle)
-                .addContainerGap(109, Short.MAX_VALUE))
+                .addContainerGap(177, Short.MAX_VALUE))
         );
         jPanelProductsLayout.setVerticalGroup(
             jPanelProductsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelProductsLayout.createSequentialGroup()
                 .addGap(30, 30, 30)
                 .addComponent(jProductsTitle)
-                .addContainerGap(393, Short.MAX_VALUE))
+                .addContainerGap(527, Short.MAX_VALUE))
         );
 
         mainPanel.add(jPanelProducts, "jPanelProducts");
@@ -111,20 +178,20 @@ public class HomePage extends javax.swing.JFrame {
             .addGroup(jPanelOrdersLayout.createSequentialGroup()
                 .addGap(61, 61, 61)
                 .addComponent(jOrdersTitle)
-                .addContainerGap(90, Short.MAX_VALUE))
+                .addContainerGap(154, Short.MAX_VALUE))
         );
         jPanelOrdersLayout.setVerticalGroup(
             jPanelOrdersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelOrdersLayout.createSequentialGroup()
                 .addGap(32, 32, 32)
                 .addComponent(jOrdersTitle)
-                .addContainerGap(391, Short.MAX_VALUE))
+                .addContainerGap(525, Short.MAX_VALUE))
         );
 
         mainPanel.add(jPanelOrders, "jPanelOrders");
 
         getContentPane().add(mainPanel);
-        mainPanel.setBounds(200, 0, 500, 470);
+        mainPanel.setBounds(200, 0, 600, 600);
 
         jBtnCustomers.setText("Klanten Overzicht");
         jBtnCustomers.addActionListener(new java.awt.event.ActionListener() {
@@ -133,7 +200,7 @@ public class HomePage extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jBtnCustomers);
-        jBtnCustomers.setBounds(6, 30, 190, 70);
+        jBtnCustomers.setBounds(10, 160, 180, 70);
 
         jBtnProducts.setText("Producten Overzicht");
         jBtnProducts.addActionListener(new java.awt.event.ActionListener() {
@@ -142,7 +209,7 @@ public class HomePage extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jBtnProducts);
-        jBtnProducts.setBounds(6, 136, 190, 69);
+        jBtnProducts.setBounds(10, 260, 180, 69);
 
         jBtnOrders.setText("Bestellingen Overzicht");
         jBtnOrders.addActionListener(new java.awt.event.ActionListener() {
@@ -151,21 +218,29 @@ public class HomePage extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jBtnOrders);
-        jBtnOrders.setBounds(6, 238, 190, 70);
+        jBtnOrders.setBounds(10, 350, 180, 70);
 
+        jBtnLogout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hetfruithuisje/images/Icons/logout.png"))); // NOI18N
         jBtnLogout.setText("Uitloggen");
+        jBtnLogout.setMaximumSize(new java.awt.Dimension(155, 32));
+        jBtnLogout.setMinimumSize(new java.awt.Dimension(155, 32));
         jBtnLogout.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBtnLogoutActionPerformed(evt);
             }
         });
         getContentPane().add(jBtnLogout);
-        jBtnLogout.setBounds(10, 410, 180, 42);
+        jBtnLogout.setBounds(10, 520, 180, 42);
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hetfruithuisje/images/Logo-sm.png"))); // NOI18N
+        jLabel1.setText("jLabel1");
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(20, 20, 160, 90);
 
         background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hetfruithuisje/images/bg.png"))); // NOI18N
         background.setText("jLabel2");
         getContentPane().add(background);
-        background.setBounds(1, 1, 700, 470);
+        background.setBounds(1, 1, 800, 600);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -196,6 +271,14 @@ public class HomePage extends javax.swing.JFrame {
         j.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jBtnLogoutActionPerformed
+
+    private void jBtnAddCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnAddCustomerActionPerformed
+        
+        AddCustomer j = new AddCustomer();
+        j.setVisible(true);
+        this.dispose();
+        
+    }//GEN-LAST:event_jBtnAddCustomerActionPerformed
 
     /**
      * @param args the command line arguments
@@ -234,16 +317,20 @@ public class HomePage extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel background;
+    private javax.swing.JButton jBtnAddCustomer;
     private javax.swing.JButton jBtnCustomers;
     private javax.swing.JButton jBtnLogout;
     private javax.swing.JButton jBtnOrders;
     private javax.swing.JButton jBtnProducts;
     private javax.swing.JLabel jCustomersTitle;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jOrdersTitle;
     private javax.swing.JPanel jPanelCustomers;
     private javax.swing.JPanel jPanelOrders;
     private javax.swing.JPanel jPanelProducts;
     private javax.swing.JLabel jProductsTitle;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTableCustomers;
     private javax.swing.JPanel mainPanel;
     // End of variables declaration//GEN-END:variables
 }
