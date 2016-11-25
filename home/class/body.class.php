@@ -73,6 +73,57 @@ class Body
 		echo "<h4>Order Aangemaakt!</h4>";
 	}
 	
+	function bestelling_bekijken($db) {
+		echo "<h4>Bestellingen Bekijken</h4>";
+		$sql = "SELECT
+				  `ordernr`,
+				  `klantnr`,
+				  `datum_betaling`,
+				  `btw_percentage`
+				FROM
+				  `klant_order`
+				WHERE
+				  `klantnr`={$_SESSION['user']['klantnr']}";
+		$result = $db->query($sql);
+		
+		echo "<table border=1>";
+		while($row = $result->fetch_assoc()) {
+			foreach($row as $key => $value) {
+				$store[$row['ordernr']][$key] = $value;
+			}
+		}
+		echo "<tr>";
+		echo  "<th></th>";
+		echo  "<th>#</th>";
+		echo  "<th>Datum</th>";
+		echo "</tr>";
+		foreach($store as $row) {
+			echo "<tr>";
+			echo "<td><a href='#'>Bekijk</a></td>";
+			echo "<td>#{$row['ordernr']}</td>";
+			echo "<td>{$row['datum_betaling']}</td>";
+			/*foreach($row as $key => $value) {
+				echo "<td>{$value}</td>";
+			}*/
+			echo "</tr>";
+		}
+		echo "</table>";
+		
+		//echo "<pre>";print_r($store);echo "</pre>";
+	}
+	
+	function bestelling_bekijken_form($db,$orderid) {
+		echo "<h4>Bestelling Bekijken</h4>";
+		$sql = "SELECT
+				  k.`productnr`,
+				  k.`ordernr`,
+				  k.`aantal`
+				FROM
+				  `klant_order_item` as k
+				WHERE
+				  `ordernr`={$orderid}";
+	}
+	
 	// global function to process any table!
 	function form_process($db,$action,$table,$pk){
 		// build sql

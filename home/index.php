@@ -87,10 +87,18 @@
 						$body->loginpage();
 						break;
 					case 'bestelling_aanmaken':
-						if(isset($_POST)) {
+						if(isset($_POST['product'])) {
 							$body->bestelling_aanmaken_process($db);
 						}
 						$body->bestelling_aanmaken($db);
+						break;
+					case 'bestelling_bekijken':
+						$body->bestelling_bekijken($db);
+						break;
+					case 'bestelling_bekijken_form':
+						if(isset($_GET['id'])) {
+							$body->bestelling_bekijken_form($db,$_GET['id']);
+						}
 						break;
 					default:
 						$body->home();

@@ -2,6 +2,10 @@ html {
 font-family: Calibri,Candara,Segoe,Segoe UI,Optima,Arial,sans-serif; 
 }
 
+html * {
+border-collapse: collapse;
+}
+
 body {
 /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#feffff+0,ddf1f9+35,a0d8ef+100;Blue+3D+%2318 */
 background-image: url("../img/fruits.jpg");
@@ -19,7 +23,7 @@ background:	#228B22;
 width:		100%;
 height:		100px;
 opacity:	0.95;
-background:	#228B22;
+background:	#EEEEEE;
 }
 
 #logo {
@@ -64,7 +68,7 @@ border:			1px solid;
 float:			left;
 position:		relative;
 opacity:		0.95;
-background:		#228B22;
+background:		#EEEEEE;
 }
 
 #sidenav {
